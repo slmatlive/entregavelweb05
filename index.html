@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 05 - Buscador de CEP e Mini Pokédex</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #202b3a;
+      margin: 0;
+      line-height: 1.5;
+    }
+    main { max-width: 900px; margin: 35px auto; padding: 0 18px 35px; }
+    h1 { margin-bottom: 5px; }
+    .introducao { color: #526074; margin-top: 0; }
+    section {
+      background: white;
+      border: 1px solid #dfe5ef;
+      border-radius: 10px;
+      padding: 22px;
+      margin-top: 20px;
+    }
+    h2 { margin-top: 0; font-size: 1.3rem; }
+    form { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+    .campo { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 190px; }
+    label { font-weight: bold; }
+    input {
+      font: inherit;
+      padding: 11px;
+      border: 1px solid #9caec6;
+      border-radius: 6px;
+      width: 100%;
+    }
+    button {
+      font: inherit;
+      background: #215cb7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 18px;
+      cursor: pointer;
+    }
+    button:hover { background: #17478f; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .status { min-height: 24px; margin: 13px 0 8px; font-weight: bold; }
+    .status.carregando { color: #765000; }
+    .status.erro { color: #ac2031; }
+    .status.vazio { color: #58697e; }
+    .status.sucesso { color: #187149; }
+    .resultado { margin: 8px 0 0; }
+    .resultado dt { font-weight: bold; margin-top: 8px; }
+    .resultado dd { margin-left: 0; }
+    #resultado-pokemon { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
+    #resultado-pokemon img { width: 120px; height: 120px; image-rendering: pixelated; }
+    #resultado-pokemon h3 { margin: 5px 0; }
+    #lista-pedidos, #historico-cep { padding-left: 22px; }
+    #historico-cep li { margin-bottom: 5px; }
+    .observacao { font-size: .91rem; color: #56657a; }
+    code { background: #eef1f6; padding: 1px 4px; border-radius: 3px; }
+  </style>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Semana 05 - Objetos, Dados e Assincronismo</h1>
+    <p class="introducao">Atividade prática de JavaScript: pedidos, busca de CEP e Mini Pokédex.</p>
+
+    <section>
+      <h2>Parte 1 - Análise de pedidos</h2>
+      <p>Os pedidos são verificados usando arrays, <code>filter</code>, <code>map</code> e <code>reduce</code>.</p>
+      <p id="resumo-pedidos">Analisando pedidos...</p>
+      <ul id="lista-pedidos"></ul>
+      <p class="observacao">Abra o Console com F12 para ver também os resultados da análise.</p>
+    </section>
+
+    <section>
+      <h2>Parte 2 - Buscador de CEP</h2>
+      <form id="form-cep">
+        <div class="campo">
+          <label for="cep">Digite um CEP</label>
+          <input id="cep" type="text" placeholder="Exemplo: 01001-000" autocomplete="postal-code">
+        </div>
+        <button id="botao-cep" type="submit">Buscar CEP</button>
+      </form>
+      <p id="status-cep" class="status vazio" role="status" aria-live="polite">Digite um CEP para começar.</p>
+      <dl id="resultado-cep" class="resultado"></dl>
+      <h3>Histórico de CEPs pesquisados</h3>
+      <ul id="historico-cep"></ul>
+      <p class="observacao">O histórico fica guardado enquanto esta página estiver aberta.</p>
+    </section>
+
+    <section>
+      <h2>Parte 3 - Mini Pokédex</h2>
+      <form id="form-pokemon">
+        <div class="campo">
+          <label for="pokemon">Nome do Pokémon</label>
+          <input id="pokemon" type="text" placeholder="Exemplo: pikachu" autocomplete="off">
+        </div>
+        <button id="botao-pokemon" type="submit">Buscar Pokémon</button>
+      </form>
+      <p id="status-pokemon" class="status vazio" role="status" aria-live="polite">Digite o nome de um Pokémon para começar.</p>
+      <div id="resultado-pokemon" class="resultado"></div>
+      <p class="observacao">As buscas usam APIs públicas e precisam de conexão com a internet.</p>
+    </section>
+  </main>
+</body>
+</html>
