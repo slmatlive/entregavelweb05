@@ -100,6 +100,3 @@ const respostas = await Promise.all([busca1, busca2]);
 
 Pratiquei como validar dados antes de usá-los, receber JSON de uma API, atualizar informações da página sem recarregar e mostrar mensagens diferentes dependendo do resultado da busca.
 
-## Entrega no GitHub
-
-Criar um repositório **público** com o nome `semana-05-javascript-apis` e enviar `index.html`, `app.js` e `README.md` para a raiz do repositório. Depois, entregar o link para o professor.
